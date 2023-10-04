@@ -9,12 +9,14 @@ class CustomFilledButton extends StatelessWidget {
     this.width = double.infinity,
     this.height = 50,
     this.onPressed,
+    this.isAdd = false,
   }) : super(key: key);
 
   final String title;
   final double width;
   final double height;
   final VoidCallback? onPressed;
+  final bool isAdd;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +31,27 @@ class CustomFilledButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(56),
           ),
         ),
-        child: Text(
-          title,
-          style: whiteTextStyle.copyWith(
-            fontWeight: semiBold,
-            fontSize: 16,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            isAdd == true
+                ? Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 5),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            Text(
+              title,
+              style: whiteTextStyle.copyWith(
+                fontWeight: semiBold,
+                fontSize: 16,
+              ),
+            ),
+            SizedBox(width: isAdd == true ? 5 : 0),
+          ],
         ),
       ),
     );
